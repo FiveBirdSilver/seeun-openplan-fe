@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@repo/ui": ["../../packages/ui/index.tsx"],
-      "@repo/ui/*": ["../../packages/ui/*"]
+      "@repo/ui/*": ["../../packages/ui/*"],
+      "@repo/tailwind-config": ["../../packages/tailwind-config/tailwind.config.ts"]
     },
     "plugins": [
       {
