@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "seeun-openplan-fe",
   "private": true,
   "scripts": {
     "build": "turbo run build",
