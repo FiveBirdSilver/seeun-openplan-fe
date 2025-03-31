@@ -4,9 +4,17 @@
       {
         "src": "package.json",
         "use": "@vercel/next",
-        "config": {
-          "distDir": ".next"
-        }
+        "config": { "distDir": ".next" }
+      },
+      {
+        "src": "../storybook/package.json",
+        "use": "@vercel/static-build",
+        "config": { "distDir": "../storybook/storybook-static" }
       }
+    ],
+    "routes": [
+      { "src": "/storybook/(.*)", "dest": "../storybook/storybook-static/$1" },
+      { "src": "/(.*)", "dest": "/.next/server/app/$1.html" }, 
+      { "src": "/", "dest": "/.next/server/app/index.html" }  
     ]
   }
