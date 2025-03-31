@@ -1,31 +1,22 @@
 {
     "version": 2,
     "buildCommand": "pnpm turbo run build --filter=web --filter=storybook",
-    "outputDirectory": "apps/web/.next",
+    "root": "apps/web",
+    "outputDirectory": ".next",
     "builds": [
       {
-        "src": "apps/web/package.json",
+        "src": "package.json",
         "use": "@vercel/next",
-        "config": {
-          "distDir": ".next"
-        }
+        "config": { "distDir": ".next" }
       },
       {
-        "src": "apps/storybook/package.json",
+        "src": "../storybook/package.json",
         "use": "@vercel/static-build",
-        "config": {
-          "distDir": "storybook-static"
-        }
+        "config": { "distDir": "storybook-static" }
       }
     ],
     "routes": [
-      {
-        "src": "/storybook/(.*)",
-        "dest": "/apps/storybook/storybook-static/$1"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/apps/web/.next/$1"
-      }
+      { "src": "/storybook/(.*)", "dest": "../storybook/storybook-static/$1" },
+      { "src": "/(.*)", "dest": "/.next/$1" }
     ]
   }

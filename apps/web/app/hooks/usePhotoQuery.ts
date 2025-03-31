@@ -12,7 +12,7 @@ export interface PhotoInfo {
   download_url: string;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL as string;
+const API_URL = 'https://picsum.photos/id/0/info'
 
 const fetchData = async (): Promise<PhotoInfo> => {
   try {
