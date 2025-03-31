@@ -4,11 +4,9 @@ export default {
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
     "./app/**/*.{js,ts,jsx,tsx}",
-    "../../packages/ui/src/**/*.{ts,tsx}" // 경로 수정
+    "../../packages/ui/src/**/*.{ts,tsx}" 
   ],
-  theme: {
-    extend: {},
-  },
+  theme: {},
   plugins: [],
   presets: [sharedConfig],
 };
