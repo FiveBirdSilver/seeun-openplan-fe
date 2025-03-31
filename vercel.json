@@ -5,11 +5,9 @@
         "src": "package.json",
         "use": "@vercel/next",
         "config": { "distDir": ".next" }
-      },
-      {
-        "rewrites":  [
-          {"source": "/(.*)", "destination": "/"}
-        ]
       }
+    ],
+    "routes": [
+      { "src": "/(.*)", "dest": "/apps/web/.next/$1" }
     ]
   }
