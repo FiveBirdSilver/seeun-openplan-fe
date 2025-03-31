@@ -1,29 +1,33 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from '@storybook/react-vite';
+import { join } from "path";
+import tailwindcss from "tailwindcss";
+import autoprefixer from "autoprefixer";
 
-import { join, dirname } from "path"
-
-/**
-* This function is used to resolve the absolute path of a package.
-* It is needed in projects that use Yarn PnP or are set up within a monorepo.
-*/
-function getAbsolutePath(value: string): string {
-  return dirname(require.resolve(join(value, 'package.json')))
-}
 const config: StorybookConfig = {
-  "stories": [
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
+  stories: [
+    "../src/stories/**/*.mdx",
+    "../src/stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
-  "addons": [
-    getAbsolutePath('@storybook/addon-webpack5-compiler-swc'),
-    getAbsolutePath('@storybook/addon-essentials'),
-    getAbsolutePath('@storybook/addon-onboarding'),
-    getAbsolutePath('@chromatic-com/storybook'),
-    getAbsolutePath('@storybook/addon-interactions')
+  addons: [
+    "@storybook/addon-essentials",
+    "@storybook/addon-onboarding",
+    "@chromatic-com/storybook",
+    "@storybook/experimental-addon-test",
   ],
-  "framework": {
-    "name": getAbsolutePath('@storybook/react-webpack5'),
-    "options": {}
-  }
+  framework: {
+    name: "@storybook/react-vite",
+    options: {},
+  },
+  viteFinal: (config) => {
+    config.css = config.css || {};
+    config.css.postcss = {
+      plugins: [
+        tailwindcss({ config: join(__dirname, "../tailwind.config.ts") }),
+        autoprefixer,
+      ],
+    };
+    return config;
+  },
 };
+
 export default config;

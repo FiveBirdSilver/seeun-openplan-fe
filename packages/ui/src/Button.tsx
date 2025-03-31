@@ -12,7 +12,7 @@ import React, { ButtonHTMLAttributes } from "react";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "outline";
+  variant?: "primary" | "secondary" | "outline" | "ghost"
   size?: "sm" | "md" | "lg";
   disabled?: boolean;
   fullWidth?: boolean;
@@ -33,16 +33,16 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     // 기본 스타일
-    const baseStyles = "inline-flex items-center justify-center rounded-md cursor-pointer";
+    const baseStyles = "inline-flex items-center justify-center rounded-md";
     
     // 테마 기반 스타일
     const variantStyles = {
-      primary: "bg-black text-white hover:bg-black-80 active:bg-black-80",
+      primary: "bg-black text-white hover:bg-black-80 active:bg-black-80 cursor-pointer",
 
       // 임시 스타일
-      secondary: "bg-blue text-white hover:bg-blue-100 hover:bg-blue-100", 
-      outline: "border-red-300 text-black hover:red-100 active:bg-red-100", 
-      ghost: "text-gray", 
+      secondary: "bg-blue-400 text-white hover:bg-blue-200 hover:bg-blue-200 cursor-pointer", 
+      outline: "bg-white border border-red-300 text-red-400 hover:bg-red-100 active:bg-red-100 cursor-pointer", 
+      ghost: "bg-gray-200 cursor-default opacity-50 cursor-not-allowed",
     };
     
     // 크기 기반 스타일
@@ -54,6 +54,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     
     // 너비 설정
     const widthStyle = fullWidth ? "w-full" : "";
+
 
     return (
       <button
