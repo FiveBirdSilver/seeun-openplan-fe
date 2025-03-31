@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 export interface PhotoInfo {
   id: string;
@@ -24,11 +24,16 @@ const fetchData = async (): Promise<PhotoInfo> => {
   }
 };
 
-export const usePhotoQuery = () => {
+export const usePhotoQuery = (
+  enabled: boolean = true,
+  options?: Omit<UseQueryOptions<PhotoInfo, Error>, 'queryKey' | 'queryFn' | 'enabled'>
+) => {
   return useQuery<PhotoInfo>({
     queryKey: ['photoInfo'],
     queryFn: fetchData,
     staleTime: 5 * 60 * 1000, 
     retry: 1, 
+    enabled, 
+    ...options, 
   });
 };
