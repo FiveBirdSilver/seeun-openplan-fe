@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local'
-import './globals.css'
+import './globals.css'  
+import Provider from "./provider";
 
 export const metadata: Metadata = {
   title: "Open Plan",
@@ -26,7 +27,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={pretendard.className}>
-        {children}
+        <Provider>
+          {children}
+        </Provider>
       </body>
     </html>
   );

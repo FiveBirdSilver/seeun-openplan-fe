@@ -18,7 +18,12 @@
     "paths": {
       "@repo/ui": ["../../packages/ui/index.tsx"],
       "@repo/ui/*": ["../../packages/ui/*"],
-      "@repo/tailwind-config": ["../../packages/tailwind-config/tailwind.config.ts"]
+      "@repo/tailwind-config": ["../../packages/tailwind-config/tailwind.config.ts"],
+      "@/store/*": ["./store/*"],
+      "@/hooks/*": ["./hooks/*"],
+      "@/assets/*": ["./assets/*"],
+      "@/public": ["./public"],
+      "@/services/*": ["./services/*"],
     },
     "plugins": [
       {
