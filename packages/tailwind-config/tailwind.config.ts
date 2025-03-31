@@ -62,6 +62,7 @@ export default {
             lineHeight: '140%',
           },
         ],
+        label: ['0.938rem'],
       },
     },
   },
