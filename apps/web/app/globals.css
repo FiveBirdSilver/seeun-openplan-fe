@@ -11,9 +11,3 @@ body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
 }
-
-@layer components {
-  .container-center {
-    @apply container mx-auto max-w-4xl p-4;
-  }
-}

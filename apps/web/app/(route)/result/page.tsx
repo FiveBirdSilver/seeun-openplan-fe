@@ -7,10 +7,11 @@ import { useEffect } from 'react'
 import { usePhotoStore } from 'app/store/photoStore'
 import { usePhotoQuery } from 'app/hooks/usePhotoQuery'
 import { Button, Card, Label } from '@repo/ui'
+import Error from 'app/error'
 
-export default function ResultPage() {
+export default function Page() {
   const router = useRouter()
-  const { hasViewed, setPhoto } = usePhotoStore()
+  const { hasViewed, setPhoto, reset } = usePhotoStore()
 
   // 데이터 조회 
   const {
@@ -18,10 +19,19 @@ export default function ResultPage() {
     isLoading,
     isSuccess,
     isError,
+    error
   } = usePhotoQuery(hasViewed)
 
   // 데이터 로딩 상태 확인
   const isDataLoading = isLoading || !photoInfo
+
+  // 홈으로 돌아가기
+  const routerHome = () => {
+    if (confirm('홈으로 돌아가시겠습니까? 조회 기록은 삭제됩니다.')) {
+      router.push('/')
+      reset()
+    }
+  }
 
   // 사진 조죄 이력 없을 경우 1초 뒤에 이전 페이지로 이동
   useEffect(() => {
@@ -40,8 +50,9 @@ export default function ResultPage() {
     }
   }, [isSuccess, photoInfo])
 
+  // 오류 발생시 에러 페이지 표시
   if (isError) {
-    return <div>에러가 발생했습니다.</div>
+    return <Error error={error} reset={reset} />
   }
 
   return (
@@ -104,7 +115,7 @@ export default function ResultPage() {
           variant='primary'
           fullWidth
           className='h-12 md:max-w-[154px] self-center'
-          onClick={() => router.push('/')}
+          onClick={() => routerHome()}
         >
           이전
         </Button>

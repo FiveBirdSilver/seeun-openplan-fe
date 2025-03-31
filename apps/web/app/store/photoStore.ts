@@ -5,7 +5,8 @@ interface PhotoState {
   photo: string | null
   hasViewed: boolean
   setHasViewed: (viewed: boolean) => void
-  setPhoto: (photo: string) => void
+  setPhoto: (photo: string | null) => void
+  reset: () => void
 }
 
 export const usePhotoStore = create<PhotoState>()(
@@ -13,8 +14,9 @@ export const usePhotoStore = create<PhotoState>()(
     (set) => ({
       photo: null,
       hasViewed: false,
-      setPhoto: (photo: string) => set({ photo }),
+      setPhoto: (photo: string | null) => set({ photo }),
       setHasViewed: (viewed: boolean) => set({ hasViewed: viewed }),
+      reset: () => set({ photo: null, hasViewed: false }),
     }),
     {
       name: 'photo-storage',
