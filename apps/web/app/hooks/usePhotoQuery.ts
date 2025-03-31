@@ -1,3 +1,5 @@
+'use client'
+
 import axios from 'axios';
 import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 

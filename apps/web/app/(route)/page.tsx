@@ -2,12 +2,14 @@
 
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import Lottie from 'react-lottie-player'
+import dynamic from 'next/dynamic'
 
 import { Button, Skeleton } from '@repo/ui'
 import { useDebounce } from 'app/hooks/useDebounce'
 import { usePhotoStore } from 'app/store/photoStore'
 import loadingAnimation from 'public/lottie/loading.json'
+
+const Lottie = dynamic(() => import('react-lottie-player'), { ssr: false });
 
 export default function Page() {
   const router = useRouter()

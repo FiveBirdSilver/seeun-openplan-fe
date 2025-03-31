@@ -28,12 +28,12 @@ export default function Page() {
   // 홈으로 돌아가기
   const routerHome = () => {
     if (confirm('홈으로 돌아가시겠습니까? 조회 기록은 삭제됩니다.')) {
-      router.push('/')
       reset()
+      setTimeout(() => router.push('/'), 0);
     }
   }
 
-  // 사진 조죄 이력 없을 경우 1초 뒤에 이전 페이지로 이동
+  // 사진 조회 이력 없을 경우 1초 뒤에 이전 페이지로 이동
   useEffect(() => {
     if (!hasViewed) {
       const timer = setTimeout(() => {
@@ -52,7 +52,7 @@ export default function Page() {
 
   // 오류 발생시 에러 페이지 표시
   if (isError) {
-    return <Error error={error} reset={reset} />
+    return <Error error={error} reset={() => router.push('/')} />
   }
 
   return (
