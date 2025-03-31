@@ -1,5 +1,7 @@
 {
+    "version": 2,
     "buildCommand": "pnpm turbo run build --filter=web --filter=storybook",
+    "outputDirectory": "apps/web/.next",
     "builds": [
       {
         "src": "apps/web/package.json",
