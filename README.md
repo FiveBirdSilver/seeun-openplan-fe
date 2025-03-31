@@ -54,14 +54,9 @@ pnpm install
 ### 개발 환경 실행
 
 ```bash
-# 모든 워크스페이스 실행
-pnpm dev
-
 # 개별 워크스페이스 실행
 pnpm --filter web dev
-pnpm --filter storybook dev
+pnpm --filter storybook run storybook
 ```
 
 ## 배포
-- 웹 애플리케이션: Vercel을 통해 배포
-- Storybook: Vercel 또는 Netlify를 통해 배포 가능
